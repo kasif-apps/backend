@@ -48,19 +48,20 @@ func AuthRedirectHandler(app pocketbase.PocketBase) func(c echo.Context) error {
 						query.Bind(dbx.Params{"state": c.QueryParam("state")})
 						_, err = query.Execute()
 
+						raw, err := os.ReadFile("./auth/response.html")
+
+						if err != nil {
+							return err
+						}
+
+						c.HTML(200, string(raw))
+
 						return err
 					}
 				}
 			}
 		}
 
-		raw, err := os.ReadFile("./auth/response.html")
-
-		if err != nil {
-			return err
-		}
-
-		c.HTML(200, string(raw))
 		return nil
 	}
 }
