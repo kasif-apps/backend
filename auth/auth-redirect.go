@@ -3,6 +3,7 @@ package auth
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/labstack/echo/v5"
@@ -53,6 +54,13 @@ func AuthRedirectHandler(app pocketbase.PocketBase) func(c echo.Context) error {
 			}
 		}
 
+		raw, err := os.ReadFile("./auth/response.html")
+
+		if err != nil {
+			return err
+		}
+
+		c.HTML(200, string(raw))
 		return nil
 	}
 }

@@ -2,7 +2,7 @@
   "scripts": {
     "build": "go build -o ./dist/osx main.go",
     "build_linux": "GOOS=linux GOARCH=amd64 go build -o ./dist/linux main.go",
-    "release": "flyctl deploy --dockerfile dockerfile"
+    "deploy": "flyctl deploy --dockerfile dockerfile"
   },
   "license": "MIT"
 }
